@@ -3,7 +3,7 @@ import React from 'react'
 
 const Main = () => {
   const modelRef = React.useRef();
-  const arr = ["./ZuberLogo.glb","./ZuberLogo2.glb","./Hacha de Metal.glb"];
+  const arr = ["Escudo_01_Zuber.glb","./ZuberLogo.glb","./ZuberLogo2.glb","./Hacha de Metal.glb"];
   return (
     <div className="Main__cont">
       {arr.map((url)=>{
