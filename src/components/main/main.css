@@ -1,0 +1,12 @@
+.model{
+    width: 60vw;
+    height: 40vh;
+    border: 1px solid white;
+}
+.Main__cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:5px
+}

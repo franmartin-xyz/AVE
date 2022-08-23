@@ -7,10 +7,10 @@ import {getAuth, GoogleAuthProvider} from "firebase/auth"
 
 
 
-initializeApp(firebaseConfig);
-const app = initializeApp(firebaseConfig);
-export const provider = new GoogleAuthProvider();
-export const auth = getAuth(app);
+// initializeApp(firebaseConfig);
+// const app = initializeApp(firebaseConfig);
+// export const provider = new GoogleAuthProvider();
+// export const auth = getAuth(app);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
