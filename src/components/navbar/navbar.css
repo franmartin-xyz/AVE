@@ -22,7 +22,7 @@
     font-family: var(--font-family);
 }
 #singInDiv:hover{
-    background: radial-gradient(circle at 30% 25%, rgb(71, 1, 13) 20%, rgb(195, 199, 206) 100%);
+    background: radial-gradient(circle at 30% 25%, rgb(113, 1, 22) 20%, rgb(207, 213, 222) 100%);
 }
 .nm__img-logo{
     width: 50px;
