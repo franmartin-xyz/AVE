@@ -32,12 +32,12 @@ const Navbar = () => {
     <nav className='nm__navbar'>
       <div className='nm__navbar-links'>
         <div className='nm__navbar-links-logo'>
-        <Link to="NauticaMartinTienda/"><img className='nm__img-logo' src={logo} alt="logo" /></Link>
+        <Link to="/"><img className='nm__img-logo' src={logo} alt="logo" /></Link>
         </div>
         <div className='nm__navbar-links_container'>
-          <p><Link to="NauticaMartinTienda/">Inicio</Link></p>
-          <p><Link to="NauticaMartinTienda/mypurchase">Galería 3D</Link></p>
-          <p><Link to="NauticaMartinTienda/products">Noticias</Link></p>
+          <p><Link to="/">Inicio</Link></p>
+          <p><Link to="/">Galería 3D</Link></p>
+          <p><Link to="/">Noticias</Link></p>
         </div>
       </div>
       {Object.keys(user).length == 0 &&
@@ -54,9 +54,9 @@ const Navbar = () => {
         {toggleMenu && (
         <div className="nm__navbar-menu_container scale-up-center">
           <div className="nm__navbar-menu_container-links">
-          <p><Link to="NauticaMartinTienda/">Inicio</Link></p>
-          <p><Link to="NauticaMartinTienda/mypurchase">Galería 3D</Link></p>
-          <p><Link to="NauticaMartinTienda/products">Noticias</Link></p>
+          <p><Link to="/">Inicio</Link></p>
+          <p><Link to="/">Galería 3D</Link></p>
+          <p><Link to="/">Noticias</Link></p>
           </div>
         </div>
         )}
