@@ -1,11 +1,11 @@
 {
+  "homepage": "https://franmartin-xyz.github.io/AVE/",
   "name": "ave",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@google/model-viewer": "^1.12.0",
     "firebase": "^9.9.3",
-    "gh-pages": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
@@ -34,5 +34,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
