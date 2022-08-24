@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+build_app_for_github_pages.cmd
+launch_app.cmd
