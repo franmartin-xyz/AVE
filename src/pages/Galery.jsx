@@ -11,8 +11,6 @@ const Galery = () => {
         key={url}
         class="model"
         src={url}
-        // auto-rotate
-        auto-rotate-delay="1000"
         alt="A rock"
         skybox
         exposure="1.5"
