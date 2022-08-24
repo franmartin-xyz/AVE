@@ -1,52 +1,50 @@
 import "./navbar.css"
-import React,{useContext,useState} from 'react'
+import React,{useState} from 'react'
 import {RiGoogleFill,RiCloseLine,RiMenu3Line} from "react-icons/ri"
 import { Link } from "react-router-dom"
-import logo from "../assets/logo.png"
-const Navbar = () => {
-  // const {user, setUser} = useContext(userLoginContext);
-   const [user,setUser] = useState({});
-  const [toggleMenu, setToggleMenu] = useState(false);
-  
-  const handleLogin = ()=>{
-  //   function singInWithGoogle (){
-  //     signInWithPopup(auth,provider)
-  //     .then((res)=> {
-  //       console.log (jwt_decode(res.user.accessToken));
-  //       const userMail = jwt_decode(res.user.accessToken).email;
-  //       let userName = jwt_decode(res.user.accessToken).name;
-  //       userName = userName.split(" ");
-  //       console.log(userMail);
-  //       setUser({email:userMail,given_name:userName[0],surname:userName[1]});
-  //     })
-  //     .catch(err => {console.log (err)})
-  //     }
-  //   singInWithGoogle();
-   }; 
+import { getAuth,GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
 
-   function handleSingOut(e){
-  //   setUser({});
-   }
+const Navbar = () => {
+  const logo = "https://firebasestorage.googleapis.com/v0/b/websiteave-c6330.appspot.com/o/logo.png?alt=media&token=504ba522-88eb-419d-9316-19eebe06b0fb"
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const auth = getAuth();
+    const navigate = useNavigate();
+    const [authing, setAuthing] = useState(false);
+    const signInWithGoogle = async () => {
+        signInWithPopup(auth, new GoogleAuthProvider())
+            .then((response) => {
+                console.log(response.user.uid);
+                // navigate('/AVE');
+                setAuthing(true);
+            })
+            .catch((error) => {
+                console.log(error);
+                setAuthing(false);
+            });
+    };
   const googleWidget = {fill:`white`,width:"30px", height:"30px"}
   return (
     <nav className='nm__navbar'>
       <div className='nm__navbar-links'>
         <div className='nm__navbar-links-logo'>
-        <Link to="/"><img className='nm__img-logo' src={logo} alt="logo" /></Link>
+        <Link to="/AVE"><img className='nm__img-logo' src={logo} alt="logo" /></Link>
         </div>
         <div className='nm__navbar-links_container'>
-          <p><Link to="/">Inicio</Link></p>
-          <p><Link to="/">Galería 3D</Link></p>
-          <p><Link to="/">Noticias</Link></p>
+          <p><Link to="/AVE">Inicio</Link></p>
+          <p><Link to="/galeria">Galería 3D</Link></p>
+          {authing && <p><Link to="/noticias">Noticias</Link></p>}
         </div>
       </div>
-      {Object.keys(user).length == 0 &&
-        <div id='singInDiv' onClick={()=>{handleLogin()}}><RiGoogleFill style={googleWidget}/><span>Inicia Sesión</span></div>
+      {!authing && 
+        <div id='singInDiv' onClick={()=>{signInWithGoogle()}}><RiGoogleFill style={googleWidget}/><span>Inicia Sesión</span></div>
       }
-      {Object.keys(user).length != 0 &&  <div className="nm__navbar-sign">
-        <span className='nm__navbar-sign-welcome'>Hola! {user.given_name}</span>
-        <button type="button" onClick={(e)=>handleSingOut(e)}>Sign Out</button>
-      </div>}
+      {authing &&  
+      <div className="nm__navbar-sign">
+        {/* <span className='nm__navbar-sign-welcome'>Hola! {user.given_name}</span> */}
+        <button type="button" onClick={()=>signOut(auth).then(setAuthing(false))}>Sign Out</button>
+      </div>
+      } 
       <div className="nm__navbar-menu">
         {toggleMenu
           ? <RiCloseLine color="#fff" size={27} onClick={() => setToggleMenu(false)} />
@@ -54,9 +52,9 @@ const Navbar = () => {
         {toggleMenu && (
         <div className="nm__navbar-menu_container scale-up-center">
           <div className="nm__navbar-menu_container-links">
-          <p><Link to="/">Inicio</Link></p>
-          <p><Link to="/">Galería 3D</Link></p>
-          <p><Link to="/">Noticias</Link></p>
+          <p onClick={()=>setToggleMenu(false)}><Link to="/AVE">Inicio</Link></p>
+          <p onClick={()=>setToggleMenu(false)}><Link to="/galeria">Galería 3D</Link></p>
+         {authing &&  <p onClick={()=>setToggleMenu(false)}><Link to="/noticias">Noticias</Link></p>}
           </div>
         </div>
         )}
