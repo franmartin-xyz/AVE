@@ -22,7 +22,7 @@
     font-family: var(--font-family);
 }
 #singInDiv:hover{
-    background: radial-gradient(circle at 30% 25%, rgb(113, 1, 22) 20%, rgb(207, 213, 222) 100%);
+    background: radial-gradient(circle at 0% 35%, rgb(113, 1, 22) 50%, rgb(3, 14, 30) 100%);
 }
 .nm__img-logo{
     width: 50px;
@@ -56,6 +56,7 @@
     text-transform: capitalize;
     margin: 0 1rem;
     cursor: pointer;
+    text-decoration: none;
 }
 .nm__navbar-sign-welcome{
     color: white;
@@ -93,9 +94,8 @@
     justify-content: flex-end;
     align-items: flex-end;
     flex-direction: column;
-    
     text-align: end;
-    background: var(--color-footer);
+    background-color: var(--color-footer) ;
     padding: 2rem;
     position: absolute;
     right: 0;

@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {default as arr} from "./arr"
 const Galery = () => {
+  const [Array,setArray] = useState(arr);
   const modelRef = React.useRef();
-  
+  function search(e){
+  const res = arr.filter((url) => {url = url.toLowerCase(); return url.includes(e.target.value.toLowerCase())})
+  setArray(res);
+  }
   return (
+    <div className='cont'>
+      <div className="form__group field">
+        <input type="input" autoComplete="off" onChange={(e)=>search(e)} className="form__field" placeholder="Buscar por Apellido" name="search" id='search' />
+        <label htmlFor="search" className="form__label">Buscar por Apellido</label>
+      </div>
     <div className="Main__cont">
-      {arr.map((url)=>{
+      {Array.map((url)=>{
         return( 
         <model-viewer
         key={url}
@@ -24,6 +33,7 @@ const Galery = () => {
         >
       </model-viewer>)})}
     </div>
+          </div>
   );
 }
 
