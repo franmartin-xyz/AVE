@@ -1,0 +1,123 @@
+.newsForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.newsForm input{
+    width: 80vw;
+    font-family: var(--font-family);
+    color: white;
+    background: transparent;
+}
+.newsForm input::placeholder{
+    text-align: center;
+}
+#title{
+    text-align: center;
+    font-size: 25px;
+    border-bottom: 1px solid white;
+    border-top: none;
+    border-left: none;
+    border-right: none;   
+}
+#title:focus{
+    border-width: 2px;
+    border-image: linear-gradient(to right, var(--color-primary),#ffffff);
+    border-image-slice: 1;
+    outline: none;
+}
+#description{
+    text-align: start;
+    text-overflow: clip;
+    height: 60vh;
+    font-size: 2vh;
+    border: 1px solid white;
+}
+#description::placeholder{
+    padding-top: 0px;
+}
+.files__container{
+    order: -1;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: auto;
+}
+.dropzone{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    width: 80%;
+    height: 20vh;
+}
+.files__container p{
+    color: white;
+    font-family: var(--font-family);
+    text-align: center;
+}
+.thumbInner{
+    position: relative;
+}
+.thumb{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+.thumbsContainer{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    width: 80%;
+    position: relative;
+}
+.img{
+    border-radius: 2px;
+    width: 20vw;
+}
+#deleteImg{
+    position: absolute;
+    border: none;
+    background: transparent;
+    color: white;
+    font-family: var(--font-family);
+    font-size: 11px;
+    border-radius: 50%;
+    border: 1px solid white;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    transition: scale, box-shadow 0.2s;
+}
+#deleteImg:hover{
+    box-shadow: 0px 0px 4px 2px grey;
+    scale: 1.05;
+    transition: scale, box-shadow 0.4s;
+}
+
+#submit{
+    border: 1px solid white;
+    background-color: transparent;
+    color: white;
+    font-family: var(--font-family);
+    font-size: 25px;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0px 0px 3px 1px grey;
+}
+#submit:hover{
+    scale: 1.03;
+    box-shadow: 2px 2px 5px 1px white;
+    transition: 0.4s;
+}

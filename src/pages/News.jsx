@@ -1,86 +1,72 @@
 import React,{useState,useEffect} from 'react'
 import { useDropzone } from 'react-dropzone';
-
-const thumbsContainer = {
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  justifyContent:"center",
-  marginTop: 16
-};
-
-const thumb = {
-  display: 'flex',
-  justifyContent:"center",
-  borderRadius: 2,
-  border: 'none',
-  marginBottom: 8,
-  marginRight: 8,
-  width: 100,
-  height: 100,
-  padding: 4,
-  boxSizing: 'border-box'
-};
-
-const thumbInner = {
-  display: 'flex',
-  minWidth: 0,
-  overflow: 'hidden'
-};
-
-const img = {
-  display: 'block',
-  width: 'auto',
-  height: '100%'
-};
-
+import "./news.css"
+import { FileRejected } from '../components';
+import { TextEditor } from '../components';
 const News = () => {
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState([]);  
   const {getRootProps, getInputProps} = useDropzone({
     accept: {
       'image/*': []
     },
-    onDrop: acceptedFiles => {
+    onDrop: (acceptedFiles,fileRejections )=> {
       setFiles(acceptedFiles.map(file => Object.assign(file, {
         preview: URL.createObjectURL(file)
       })));
-    }
+    },
+    onDropRejected: (fileRejections)=>{
+      let errors;
+      console.log(fileRejections)
+      if(fileRejections[0].errors[0].code==="file-too-large"){
+       errors ="La imagen "+fileRejections[0].file.name+" tiene mas de 2MB porfavor reduzca su tamaño, (lo puede hacer compartiendo su imagen en Whatsapp y luego volverla a descargar)";
+      }else{
+        errors = fileRejections[0].file.name + fileRejections[0].errors[0].message;
+      }
+      FileRejected(errors);
+    },
+    maxSize:2097152
   });
   
-  const thumbs = files.map(file => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <img
+  const thumbs = files.map((file,index)=> (
+    <div className='thumb' key={file.name}>
+      <div className='thumbInner'>
+        <button id="deleteImg" onClick={(e) => {e.preventDefault(); const newFiles=[...files]; newFiles.splice(index,1); setFiles(newFiles);}}>X</button>
+        <img className='img'
           src={file.preview}
-          style={img}
-          // Revoke data uri after image is loaded
           onLoad={() => { URL.revokeObjectURL(file.preview) }}
+          alt="imges de la noticia"
         />
       </div>
     </div>
   ));
 
   useEffect(() => {
-    // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
     return () => files.forEach(file => URL.revokeObjectURL(file.preview));
-  }, []);
+  },);
 
+  function handleSubmit(e){
+    e.preventDefault()
+    let data =new FormData(e.target)
+    console.log(data.get('title'),data.get("description"))
+  }
 
   return (
     <div>
       <div className='create__news'>
-        <form action="newForm">
-          <input type="text" id='title' name='title' required={true} />
-          <input type="text" id="description" name="description" required={true} />
+        <form action="newForm" className='newsForm' onSubmit={e=>handleSubmit(e)}>
+          <input type="text" id='title' name='title' required={true} autoComplete="off" placeholder="TITULO DE LA NOTICIA"/>
+          <TextEditor />
+          {/* <input type="text"  name="description" required={true} autoComplete="off" placeholder="Descripción de la Noticia"/> */}
           <div className='files__container'>
             <div {...getRootProps({className: 'dropzone'})}>
             <input {...getInputProps()} />
-            <p>Drag 'n' drop some files here, or click to select files</p>
+            <p>Arrastra las imagenes o hace click para abrir el buscador</p>
             </div>
-            <aside style={thumbsContainer}>
+            <aside className="thumbsContainer">
               {thumbs}
             </aside>
           </div>
+          <button type='submit' id="submit">Enviar Noticia</button>
         </form>
       </div>
     </div>
