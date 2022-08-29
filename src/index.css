@@ -6,7 +6,10 @@
   --gradient-bar: linear-gradient(103.22deg, #921c4d -13.86%, #f9f7f6 99.55%);
   --color-bg: #040C18;
   --color-footer : #031B34;
-  --color-blog: #042c54;
-  --color-text: #81AFDD;
+  --color-primary:#c63637;
+  --color-secondary:#e2504c;
+  --color-tertiary:#ff6961;
+  --color-blog: #ff9688;
+  --color-text: #ffbfb0;
   --color-subtext: #FF8A71;
 }

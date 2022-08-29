@@ -33,10 +33,10 @@
 font-family: var(--font-family);
   width: 100%;
   border: 0;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid var(--color-primary);
   outline: 0;
   font-size: 1.3rem;
-  color: #fff;
+  color: white;
   padding: 7px 0;
   background: transparent;
   transition: border-bottom 1s;
@@ -52,21 +52,23 @@ font-family: var(--font-family);
     top: 25px;
     font-family: var(--font-family);
   }
-
+#search__label{
+    user-select: none;
+}
 .form__label {
   position: absolute;
   top: 0;
   display: block;
   transition: 0.3s;
   font-size: 1rem;
-  color: #9b9b9b;
+  color: white;
   font-family: var(--font-family);
 }
 
 .form__field:focus {
     font-weight: 700;
     border-width: 2px;
-    border-image: linear-gradient(to right, #800f0f,#110928);
+    border-image: linear-gradient(to right, var(--color-primary),#110928);
     border-image-slice: 1;
 }
 .form__field .form__label {
@@ -96,7 +98,7 @@ font-family: var(--font-family);
         flex-direction: row;
     }
 }
-@media screen and (min-width: 950px){
+@media screen and (min-width: 1200px){
     .model{
         width: 20vw;
         height: 50vh;

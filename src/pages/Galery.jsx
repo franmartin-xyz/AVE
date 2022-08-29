@@ -11,7 +11,7 @@ const Galery = () => {
     <div className='cont'>
       <div className="form__group field">
         <input type="input" autoComplete="off" onChange={(e)=>search(e)} className="form__field" placeholder="Buscar por Apellido" name="search" id='search' />
-        <label htmlFor="search" className="form__label">Buscar por Apellido</label>
+        <label unselectable="on" htmlFor="search" className="form__label" id="search__label">Buscar por Apellido</label>
       </div>
     <div className="Main__cont">
       {Array.map((url)=>{

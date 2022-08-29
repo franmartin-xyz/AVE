@@ -11,11 +11,9 @@ const Login = () => {
 
         signInWithPopup(auth, new GoogleAuthProvider())
             .then((response) => {
-                console.log(response.user.uid);
                 navigate('/AVE');
             })
             .catch((error) => {
-                console.log(error);
                 setAuthing(false);
             });
     };

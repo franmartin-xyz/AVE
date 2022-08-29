@@ -5,6 +5,7 @@
     padding: 2rem 6rem;
 }
 #singInDiv{
+    transition: scale 0.2s;
     min-width: 50px;
     min-height: 50px;
     display: flex;
@@ -22,10 +23,18 @@
     font-family: var(--font-family);
 }
 #singInDiv:hover{
-    background: radial-gradient(circle at 0% 35%, rgb(113, 1, 22) 50%, rgb(3, 14, 30) 100%);
+    background: radial-gradient(circle at 0% 35%, var(--color-primary) 50%, rgb(3, 14, 30) 100%);
+    scale:1.03;
+    transition: scale 0.4s;
+
 }
 .nm__img-logo{
     width: 50px;
+    transition: scale 0.2s;
+}
+.nm__img-logo:hover{
+    scale: 1.2;
+    transition: scale 0.4s;
 }
 .nm__navbar-links {
     flex: 1;
@@ -39,32 +48,26 @@
     flex-direction: row;
 }
 
-.nm__navbar-sign {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
 .nm__navbar-links_container p,
-.nm__navbar-sign p,
 .nm__navbar-menu_container p{
-    color: #fff;
     font-family: var(--font-family);
-    font-weight: 500;
-    font-size: 18px;
     line-height: 25px;
     text-transform: capitalize;
     margin: 0 1rem;
     cursor: pointer;
+}
+.nm__navbar-links_container p a,.nm__navbar-menu_container p a{
     text-decoration: none;
-}
-.nm__navbar-sign-welcome{
     color: white;
-    font-family: var(--font-family);
-    margin-right:20px;
+    font-size: 20px;
+    transition: font-size 0.2s;
 }
-.nm__navbar-sign button,
-.nm__navbar-menu_container button {
+.nm__navbar-links_container p a:hover,.nm__navbar-menu_container p a:hover{
+    font-size: 22px;
+    transition: font-size 0.4s;
+}
+.nm__navbar-sign button {
+    transition: scale 0.2s;
     padding: 0.5rem 1rem;
     color: #fff;
     background: #FF4820;
@@ -77,10 +80,14 @@
     cursor: pointer;
     border-radius: 5px;
 }
+.nm__navbar-sign button:hover{
+    scale: 1.06;
+    transition: scale 0.4s;
+}
 
 .nm__navbar-menu {
     margin-left: 1rem;
-
+    z-index: 1;
     display: none;
     position: relative;
 }
@@ -114,7 +121,7 @@
     display: none;
 }
 
- @media screen and (max-width: 1050px) {
+ @media screen and (max-width: 650px) {
     .nm__navbar-links_container {
         display: none;
     }
