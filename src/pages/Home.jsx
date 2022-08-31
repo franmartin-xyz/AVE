@@ -11,13 +11,15 @@ const Home = () => {
       snapshop=>{
         snapshop.docs.map((doc,i)=>{
           let datas = {...doc.data(),id:doc.id};
-          i===1 ? setNews(prevState=>[...prevState,datas]) : setNews([datas])
+          console.log(datas)
+          i===0 ? setNews([datas]) : setNews(prevState=>[...prevState,datas])
         })
       }
     ).catch(
       err => PostInfo("error",`Hay un Problema al descargar las Noticias ${err}`)
     );
-  },[])
+  },[]);
+  news.sort((data,a)=>{return a.time.seconds - data.time.seconds})
   return (
     <div className='news'>
       { news.length>0 ? (
