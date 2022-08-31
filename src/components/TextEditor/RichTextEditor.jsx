@@ -2,21 +2,30 @@ import React from "react";
 import { ReactDOM } from "react";
 import "./richtext.css"
 import 'draft-js/dist/Draft.css';
-import {Editor, EditorState, RichUtils, getDefaultKeyBinding}  from "draft-js";
+import {Editor, EditorState, RichUtils, getDefaultKeyBinding, convertFromRaw, getCurrentContent, convertToRaw}  from "draft-js"
+function saveLocalContent(content){
+  localStorage.setItem('content', JSON.stringify(convertToRaw(content)));
+}
 class RichEditorExample extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {editorState: EditorState.createEmpty()};
-      this.msg = props.msg;
+      this.state = { };
+      const localContent = localStorage.getItem("content");
+      if(localContent){
+        this.state.editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(localContent)));
+      }else{
+        this.state.editorState = EditorState.createEmpty();
+      }
+      props.setEditorState(convertToRaw(this.state.editorState.getCurrentContent()))
       this.focus = () => this.refs.editor.focus();
-      this.onChange = (editorState) =>{ this.setState({editorState})};
-
+      this.onChange = (editorState) =>{ this.setState({editorState}); saveLocalContent(editorState.getCurrentContent()); props.setEditorState(convertToRaw(editorState.getCurrentContent()))};
       this.handleKeyCommand = this._handleKeyCommand.bind(this);
       this.mapKeyToEditorCommand = this._mapKeyToEditorCommand.bind(this);
       this.toggleBlockType = this._toggleBlockType.bind(this);
       this.toggleInlineStyle = this._toggleInlineStyle.bind(this);
     }
 
+    
     _handleKeyCommand(command, editorState) {
       const newState = RichUtils.handleKeyCommand(editorState, command);
       if (newState) {
@@ -90,7 +99,7 @@ class RichEditorExample extends React.Component {
               handleKeyCommand={this.handleKeyCommand}
               keyBindingFn={this.mapKeyToEditorCommand}
               onChange={this.onChange}
-              placeholder="Tell a story..."
+              placeholder="Texto de la noticia. . ."
               ref="editor"
               spellCheck={true}
             />
@@ -141,15 +150,15 @@ class RichEditorExample extends React.Component {
   }
 
   const BLOCK_TYPES = [
-    {label: 'H1', style: 'header-one'},
-    {label: 'H2', style: 'header-two'},
+    {label: 'H1/Titulo', style: 'header-one'},
+    {label: 'H2/Subtitulo', style: 'header-two'},
     {label: 'H3', style: 'header-three'},
     {label: 'H4', style: 'header-four'},
     {label: 'H5', style: 'header-five'},
     {label: 'H6', style: 'header-six'},
     {label: 'Blockquote', style: 'blockquote'},
-    {label: 'UL', style: 'unordered-list-item'},
-    {label: 'OL', style: 'ordered-list-item'},
+    {label: 'UL/Lista no Ordenada', style: 'unordered-list-item'},
+    {label: 'OL/Lista Ordenada', style: 'ordered-list-item'},
     {label: 'Code Block', style: 'code-block'},
   ];
 
@@ -177,10 +186,10 @@ class RichEditorExample extends React.Component {
   };
 
   var INLINE_STYLES = [
-    {label: 'Bold', style: 'BOLD'},
-    {label: 'Italic', style: 'ITALIC'},
-    {label: 'Underline', style: 'UNDERLINE'},
-    {label: 'Monospace', style: 'CODE'},
+    {label: 'Negrita', style: 'BOLD'},
+    {label: 'Cursiva', style: 'ITALIC'},
+    {label: 'Subrrayar', style: 'UNDERLINE'},
+    {label: 'Terminal', style: 'CODE'},
   ];
 
   const InlineStyleControls = (props) => {

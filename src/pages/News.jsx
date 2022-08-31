@@ -1,10 +1,16 @@
 import React,{useState,useEffect} from 'react'
 import { useDropzone } from 'react-dropzone';
 import "./news.css"
-import { FileRejected } from '../components';
+import { FileRejected, PostInfo } from '../components';
 import { TextEditor } from '../components';
+import { db, storage } from '../components/functions/firebase';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { async } from '@firebase/util';
+import { addDoc, arrayUnion, collection, serverTimestamp } from 'firebase/firestore';
 const News = () => {
+  const [selectedImages,setSelectedImages] = useState([]);
   const [files, setFiles] = useState([]);  
+  const [editorState,setEditorState] = useState();
   const {getRootProps, getInputProps} = useDropzone({
     accept: {
       'image/*': []
@@ -16,9 +22,8 @@ const News = () => {
     },
     onDropRejected: (fileRejections)=>{
       let errors;
-      console.log(fileRejections)
       if(fileRejections[0].errors[0].code==="file-too-large"){
-       errors ="La imagen "+fileRejections[0].file.name+" tiene mas de 2MB porfavor reduzca su tamaño, (lo puede hacer compartiendo su imagen en Whatsapp y luego volverla a descargar)";
+       errors ="La imagen "+fileRejections[0].file.name+" tiene mas de 2MB por favor reduzca su tamaño, (lo puede hacer compartiendo su imagen en Whatsapp y luego volverla a descargar)";
       }else{
         errors = fileRejections[0].file.name + fileRejections[0].errors[0].message;
       }
@@ -47,16 +52,38 @@ const News = () => {
   function handleSubmit(e){
     e.preventDefault()
     let data =new FormData(e.target)
-    console.log(data.get('title'),data.get("description"))
+    let text =JSON.stringify(editorState);
+    let downloadURL = [];
+    let title = data.get("title");
+    files.map((image,i)=>{
+      const imageRef = ref(storage, `noticias/${image.path}`);
+      uploadBytes(imageRef, image, "data_Url").then(async()=>{
+       let URL = await getDownloadURL(imageRef);
+       downloadURL.push(URL);
+        if(i+1 === files.length){
+          addDoc(collection(db,"noticias"),{
+            title,
+            time: serverTimestamp(),
+            text,
+            imagesURL:downloadURL,
+            }).then(
+              PostInfo("success","La noticia fue publicada")
+            ).catch(
+              err=>PostInfo("error",`${err}`)
+            );
+        }
+      }).catch(
+        err=>PostInfo("error",`Problema con Google Storage ${err}`)
+      );
+    });
+     
   }
-
   return (
     <div>
       <div className='create__news'>
         <form action="newForm" className='newsForm' onSubmit={e=>handleSubmit(e)}>
-          <input type="text" id='title' name='title' required={true} autoComplete="off" placeholder="TITULO DE LA NOTICIA"/>
-          <TextEditor />
-          {/* <input type="text"  name="description" required={true} autoComplete="off" placeholder="Descripción de la Noticia"/> */}
+          <input type="text" id='title' name='title' required={true} autoComplete="off" placeholder="TÍTULO DE LA NOTICIA"/>
+          <TextEditor setEditorState={setEditorState}/>
           <div className='files__container'>
             <div {...getRootProps({className: 'dropzone'})}>
             <input {...getInputProps()} />
@@ -66,7 +93,7 @@ const News = () => {
               {thumbs}
             </aside>
           </div>
-          <button type='submit' id="submit">Enviar Noticia</button>
+          <button type='submit' id="submit">Publicar Noticia</button>
         </form>
       </div>
     </div>
