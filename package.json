@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@google/model-viewer": "^1.12.0",
+    "dayjs": "^1.11.5",
     "draft-js": "^0.11.7",
     "firebase": "^9.9.3",
     "react": "^18.2.0",

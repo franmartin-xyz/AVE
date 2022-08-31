@@ -1,8 +1,8 @@
 .model{
     width: 70vw;
     height: 50vh;
-    border-radius: 50%;
-    box-shadow: 0px -100px 40px -80px rgba(113, 16, 16, 0.77) inset;
+    /* border-radius: 50%;
+    box-shadow: 0px -100px 40px -80px rgba(113, 16, 16, 0.77) inset; */
     transition: width 0.5s;
 }
 
@@ -14,7 +14,31 @@
     gap:5px;
     flex-wrap: wrap;
 }
-
+.escudo__cont{
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ border-radius: 50%;
+    box-shadow: 0px -100px 50px -80px rgba(113, 16, 16, 0.77) inset;
+}
+.escudo__detailsBtn{
+  margin-top: -10px;
+  margin-bottom: 20px;
+  border: 1px solid white;
+  border-radius: 8px;
+  color:white;
+  font-family: var(--font-family);
+  font-size: 15px;
+  padding: 5px;
+  background: transparent;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.escudo__detailsBtn:hover{
+  scale: 1.1;
+  transition: 0.4s;
+}
 .cont{
     display: flex;
     flex-direction: column;

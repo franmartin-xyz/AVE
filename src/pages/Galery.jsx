@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {default as arr} from "./arr"
+import "./galery.css"
 const Galery = () => {
   const [Array,setArray] = useState(arr);
   const modelRef = React.useRef();
@@ -16,22 +17,26 @@ const Galery = () => {
     <div className="Main__cont">
       {Array.map((url)=>{
         return( 
-        <model-viewer
-        key={url}
-        class="model"
-        src={url}
-        alt="A rock"
-        skybox
-        exposure="1.5"
-        camera-controls
-        ar-scale="auto"
-        ar-modes="webxr"
-        camera-orbit="90deg 90deg 10m"
-        ref={(ref) => {
-          modelRef.current = ref;
-        }}
-        >
-      </model-viewer>)})}
+          <div className='escudo__cont'>
+          <model-viewer
+          key={url}
+          class="model"
+          src={url}
+          alt="A rock"
+          skybox
+          exposure="1.5"
+          camera-controls
+          ar-scale="auto"
+          ar-modes="webxr"
+          camera-orbit="90deg 90deg 10m"
+          ref={(ref) => {
+            modelRef.current = ref;
+          }}
+          >
+        </model-viewer>
+        <button className='escudo__detailsBtn'>ver más</button>
+      </div>
+      )})}
     </div>
           </div>
   );
