@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import {Navbar,Footer,AuthProtection} from "./components"
-import { Home,Galery,News } from "./pages"
+import { Home,Galery,News, Contact } from "./pages"
 function App() {
   return (
     <div>
@@ -10,6 +10,7 @@ function App() {
         <Routes>
           <Route path='/AVE/' element={<Home/>}/>
           <Route path='/galeria' element={<Galery />} />
+          <Route path='/contacto' element={<Contact/>} />
           <Route path='/noticias' element={<AuthProtection><News/></AuthProtection>}/>
         </Routes>
       <Footer/>

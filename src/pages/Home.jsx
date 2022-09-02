@@ -12,7 +12,6 @@ const Home = () => {
       snapshop=>{
         snapshop.docs.map((doc,i)=>{
           let datas = {...doc.data(),id:doc.id};
-          console.log(datas)
           i===0 ? setNews([datas]) : setNews(prevState=>[...prevState,datas])
         })
       }

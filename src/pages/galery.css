@@ -107,20 +107,13 @@ font-family: var(--font-family);
 
 @media screen and (max-width: 650px){
     .model{
-        width: 50vw;
+        width: 80vw;
         height: 50vh;
         transition: width 0.5s;
     } 
 }
 @media screen and (min-width: 750px){
-    .model{
-        width: 33vw;
-        height: 50vh;
-        transition: width 0.5s;
-    }
-    .Main__cont{
-        flex-direction: row;
-    }
+    
 }
 @media screen and (min-width: 1200px){
     .model{
@@ -128,4 +121,7 @@ font-family: var(--font-family);
         height: 50vh;
         transition: width 0.5s;
     }  
+  .Main__cont{
+      flex-direction: row;
+  }
 }

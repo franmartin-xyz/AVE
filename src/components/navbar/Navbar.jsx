@@ -35,6 +35,7 @@ const Navbar = () => {
           <p><Link to="/AVE">Inicio</Link></p>
           <p><Link to="/galeria">Galería 3D</Link></p>
           {isLogged && <p><Link to="/noticias">Noticias</Link></p>}
+          <p onClick={()=>setToggleMenu(false)}><Link to="/contacto">Contacto</Link></p>
         </div>
       </div>
       {!isLogged && 
@@ -55,6 +56,7 @@ const Navbar = () => {
           <p onClick={()=>setToggleMenu(false)}><Link to="/AVE">Inicio</Link></p>
           <p onClick={()=>setToggleMenu(false)}><Link to="/galeria">Galería 3D</Link></p>
          {isLogged &&  <p onClick={()=>setToggleMenu(false)}><Link to="/noticias">Noticias</Link></p>}
+         <p onClick={()=>setToggleMenu(false)}><Link to="/contacto">Contacto</Link></p>
           </div>
         </div>
         )}
