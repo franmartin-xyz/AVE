@@ -47,3 +47,9 @@
  font-family: var(--font-family);
  font-size: 10px;
 }
+.new__noNews{
+    color:white;
+    font-family: var(--font-family);
+    font-size: larger;
+    align-self: center;
+}

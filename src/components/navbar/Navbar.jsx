@@ -2,9 +2,10 @@ import "./navbar.css"
 import React,{useEffect, useState} from 'react'
 import {RiGoogleFill,RiCloseLine,RiMenu3Line} from "react-icons/ri"
 import { Link } from "react-router-dom"
-import { getAuth,GoogleAuthProvider, signInWithPopup, signOut,onAuthStateChanged,} from 'firebase/auth'
+import { getAuth,GoogleAuthProvider, signInWithPopup, signOut,onAuthStateChanged } from 'firebase/auth'
 
 const Navbar = () => {
+  const adminUsers = ["franmartin241001@gmail.com","valesanos.esperanza@gmail.com"]; 
   const logo = "https://firebasestorage.googleapis.com/v0/b/websiteave-c6330.appspot.com/o/logo.png?alt=media&token=504ba522-88eb-419d-9316-19eebe06b0fb"
   const [toggleMenu, setToggleMenu] = useState(false);
   const [authing, setAuthing] = useState(false);
@@ -34,7 +35,7 @@ const Navbar = () => {
         <div className='nm__navbar-links_container'>
           <p><Link to="/AVE">Inicio</Link></p>
           <p><Link to="/galeria">Galería 3D</Link></p>
-          {isLogged && <p><Link to="/noticias">Noticias</Link></p>}
+          {isLogged && adminUsers.includes(auth.currentUser.email) && <p><Link to="/noticias">Noticias</Link></p>}
           <p onClick={()=>setToggleMenu(false)}><Link to="/contacto">Contacto</Link></p>
         </div>
       </div>
@@ -55,7 +56,7 @@ const Navbar = () => {
           <div className="nm__navbar-menu_container-links">
           <p onClick={()=>setToggleMenu(false)}><Link to="/AVE">Inicio</Link></p>
           <p onClick={()=>setToggleMenu(false)}><Link to="/galeria">Galería 3D</Link></p>
-         {isLogged &&  <p onClick={()=>setToggleMenu(false)}><Link to="/noticias">Noticias</Link></p>}
+         {isLogged && adminUsers.includes(auth.currentUser.email) && <p onClick={()=>setToggleMenu(false)}><Link to="/noticias">Noticias</Link></p>}
          <p onClick={()=>setToggleMenu(false)}><Link to="/contacto">Contacto</Link></p>
           </div>
         </div>

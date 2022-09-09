@@ -6,20 +6,24 @@ import "./home.css"
 import * as dayjs from "dayjs"
 const Home = () => {
   const [news,setNews] = useState([]);
+  const [loading,setLoading] = useState(false)
   useEffect(()=>{
     const NewsCollection = collection(db,"noticias");
+    setLoading(true);
     getDocs(NewsCollection).then(
       snapshop=>{
         snapshop.docs.map((doc,i)=>{
           let datas = {...doc.data(),id:doc.id};
           i===0 ? setNews([datas]) : setNews(prevState=>[...prevState,datas])
         })
+        setLoading(false)
       }
     ).catch(
-      err => PostInfo("error",`Hay un Problema al descargar las Noticias ${err}`)
+      err => {PostInfo("error",`Hay un Problema al descargar las Noticias ${err}`)
+      setLoading(false)}
     );
   },[]);
-  news.sort((data,a)=>{return a.time.seconds - data.time.seconds});
+  news.length>0 && news.sort((data,a)=>{return a.time.seconds - data.time.seconds});
   return (
     <div className='news'>
       { news.length>0 ? (
@@ -44,7 +48,7 @@ const Home = () => {
             )
         })
       ) 
-      : <Spinner />
+      : loading ?  <Spinner /> : <span className='new__noNews'>No hay noticias</span>
       }
     </div>
   )
