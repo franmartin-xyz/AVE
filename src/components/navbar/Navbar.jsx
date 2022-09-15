@@ -30,13 +30,13 @@ const Navbar = () => {
     <nav className='nm__navbar'>
       <div className='nm__navbar-links'>
         <div className='nm__navbar-links-logo'>
-        <Link to="/ave"><img className='nm__img-logo' src={logo} alt="logo" /></Link>
+        <Link to="/AVE"><img className='nm__img-logo' src={logo} alt="logo" /></Link>
         </div>
         <div className='nm__navbar-links_container'>
-          <p><Link to="/ave">Inicio</Link></p>
-          <p><Link to="/ave/galeria">Galería 3D</Link></p>
-          {isLogged && adminUsers.includes(auth.currentUser.email) && <p><Link to="/ave/noticias">Noticias</Link></p>}
-          <p onClick={()=>setToggleMenu(false)}><Link to="/ave/contacto">Contacto</Link></p>
+          <p><Link to="/AVE">Inicio</Link></p>
+          <p><Link to="/AVE/galeria">Galería 3D</Link></p>
+          {isLogged && adminUsers.includes(auth.currentUser.email) && <p><Link to="/AVE/noticias">Noticias</Link></p>}
+          <p onClick={()=>setToggleMenu(false)}><Link to="/AVE/contacto">Contacto</Link></p>
         </div>
       </div>
       {!isLogged && 
@@ -54,10 +54,10 @@ const Navbar = () => {
         {toggleMenu && (
         <div className="nm__navbar-menu_container scale-up-center">
           <div className="nm__navbar-menu_container-links">
-          <p onClick={()=>setToggleMenu(false)}><Link to="/ave/">Inicio</Link></p>
-          <p onClick={()=>setToggleMenu(false)}><Link to="/ave/galeria">Galería 3D</Link></p>
-         {isLogged && adminUsers.includes(auth.currentUser.email) && <p onClick={()=>setToggleMenu(false)}><Link to="/noticias">Noticias</Link></p>}
-         <p onClick={()=>setToggleMenu(false)}><Link to="/ave/contacto">Contacto</Link></p>
+          <p onClick={()=>setToggleMenu(false)}><Link to="/AVE/">Inicio</Link></p>
+          <p onClick={()=>setToggleMenu(false)}><Link to="/AVE/galeria">Galería 3D</Link></p>
+         {isLogged && adminUsers.includes(auth.currentUser.email) && <p onClick={()=>setToggleMenu(false)}><Link to="AVE/noticias">Noticias</Link></p>}
+         <p onClick={()=>setToggleMenu(false)}><Link to="/AVE/contacto">Contacto</Link></p>
           </div>
         </div>
         )}
