@@ -34,9 +34,9 @@ const Navbar = () => {
         </div>
         <div className='nm__navbar-links_container'>
           <p><Link to="/AVE">Inicio</Link></p>
-          <p><Link to="/galeria">Galería 3D</Link></p>
-          {isLogged && adminUsers.includes(auth.currentUser.email) && <p><Link to="/noticias">Noticias</Link></p>}
-          <p onClick={()=>setToggleMenu(false)}><Link to="/contacto">Contacto</Link></p>
+          <p><Link to="/AVE/galeria">Galería 3D</Link></p>
+          {isLogged && adminUsers.includes(auth.currentUser.email) && <p><Link to="/AVE/noticias">Noticias</Link></p>}
+          <p onClick={()=>setToggleMenu(false)}><Link to="/AVE/contacto">Contacto</Link></p>
         </div>
       </div>
       {!isLogged && 
@@ -54,10 +54,10 @@ const Navbar = () => {
         {toggleMenu && (
         <div className="nm__navbar-menu_container scale-up-center">
           <div className="nm__navbar-menu_container-links">
-          <p onClick={()=>setToggleMenu(false)}><Link to="/AVE">Inicio</Link></p>
-          <p onClick={()=>setToggleMenu(false)}><Link to="/galeria">Galería 3D</Link></p>
+          <p onClick={()=>setToggleMenu(false)}><Link to="/AVE/AVE">Inicio</Link></p>
+          <p onClick={()=>setToggleMenu(false)}><Link to="/AVE/galeria">Galería 3D</Link></p>
          {isLogged && adminUsers.includes(auth.currentUser.email) && <p onClick={()=>setToggleMenu(false)}><Link to="/noticias">Noticias</Link></p>}
-         <p onClick={()=>setToggleMenu(false)}><Link to="/contacto">Contacto</Link></p>
+         <p onClick={()=>setToggleMenu(false)}><Link to="/AVE/contacto">Contacto</Link></p>
           </div>
         </div>
         )}
