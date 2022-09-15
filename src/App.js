@@ -8,10 +8,10 @@ function App() {
     <BrowserRouter>
       <Navbar/>
         <Routes>
-          <Route path='AVE/' element={<Home/>}/>
-          <Route path='AVE/galeria/' element={<Galery />} />
-          <Route path='AVE/contacto/' element={<Contact/>} />
-          <Route path='AVE/noticias/' element={<AuthProtection><News/></AuthProtection>}/>
+          <Route path='ave/' element={<Home/>}/>
+          <Route path='ave/galeria/' element={<Galery />} />
+          <Route path='ave/contacto/' element={<Contact/>} />
+          <Route path='ave/noticias/' element={<AuthProtection><News/></AuthProtection>}/>
         </Routes>
       <Footer/>
     </BrowserRouter>
