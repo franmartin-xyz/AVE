@@ -9,9 +9,9 @@ function App() {
       <Navbar/>
         <Routes>
           <Route path='/AVE/' element={<Home/>}/>
-          <Route path='/galeria' element={<Galery />} />
-          <Route path='/contacto' element={<Contact/>} />
-          <Route path='/noticias' element={<AuthProtection><News/></AuthProtection>}/>
+          <Route path='/AVE/galeria' element={<Galery />} />
+          <Route path='/AVE/contacto' element={<Contact/>} />
+          <Route path='/AVE/noticias' element={<AuthProtection><News/></AuthProtection>}/>
         </Routes>
       <Footer/>
     </BrowserRouter>
