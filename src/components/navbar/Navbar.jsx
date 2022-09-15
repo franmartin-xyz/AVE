@@ -6,7 +6,7 @@ import { getAuth,GoogleAuthProvider, signInWithPopup, signOut,onAuthStateChanged
 
 const Navbar = () => {
   const adminUsers = ["franmartin241001@gmail.com","valesanos.esperanza@gmail.com"]; 
-  const logo = "https://firebasestorage.googleapis.com/v0/b/websiteave-c6330.appspot.com/o/logo.png?alt=media&token=504ba522-88eb-419d-9316-19eebe06b0fb"
+  const logo = "https://firebasestorage.googleapis.com/v0/b/websiteave-c6330.appspot.com/o/Logo%20AVE.svg?alt=media&token=7b80ca35-68a9-4dc6-b82c-d4d903f00bda"
   const [toggleMenu, setToggleMenu] = useState(false);
   const [authing, setAuthing] = useState(false);
   const [isLogged,setIsLogged] = useState(false);
