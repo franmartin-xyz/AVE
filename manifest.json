@@ -1,7 +1,12 @@
 {
   "short_name": "EVA",
   "name": "Asociasión Valesana de Esperanza",
-  "icons": [
+  "icons": [{
+    "src": "https://firebasestorage.googleapis.com/v0/b/websiteave-c6330.appspot.com/o/Logo%20AVE.svg?alt=media&token=7b80ca35-68a9-4dc6-b82c-d4d903f00bda",
+    "sizes":"48x48 72x72 96x96 128x128 256x256",
+    "type":"image/svg+xml",
+    "purpose":"any"
+  }
   ],
   "start_url": "./index.html",
   "display": "standalone",
