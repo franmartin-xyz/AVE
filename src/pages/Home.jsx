@@ -12,7 +12,7 @@ const Home = () => {
     setLoading(true);
     getDocs(NewsCollection).then(
       snapshop=>{
-        snapshop.docs.map((doc,i)=>{
+        snapshop.docs.forEach((doc,i)=>{
           let datas = {...doc.data(),id:doc.id};
           i===0 ? setNews([datas]) : setNews(prevState=>[...prevState,datas])
         })

@@ -5,7 +5,6 @@ import "./galery.css"
 const Galery = () => {
   const [Array,setArray] = useState([]);
   const modelRef = React.useRef();
-  const original = Array;
   function search(e){
     const res = Array.filter((url) => {url = url.toLowerCase(); return url.includes(e.target.value.toLowerCase())})
     if(res.length>0 && e.target.value !== "") setArray(res); else {
@@ -14,7 +13,6 @@ const Galery = () => {
       document  => { setArray(document.docs[0].data().urls);}
       );
     }
-    console.log("res>",res,"array>",Array,"original>",original)
  }
   useEffect(()=>{
     const LogosCollection = collection(db,"logos");

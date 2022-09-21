@@ -5,10 +5,8 @@ import { FileRejected, PostInfo } from '../components';
 import { TextEditor } from '../components';
 import { db, storage } from '../components/functions/firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { async } from '@firebase/util';
-import { addDoc, arrayUnion, collection, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 const News = () => {
-  const [selectedImages,setSelectedImages] = useState([]);
   const [files, setFiles] = useState([]);  
   const [editorState,setEditorState] = useState();
   const {getRootProps, getInputProps} = useDropzone({
@@ -55,19 +53,19 @@ const News = () => {
     let text =JSON.stringify(editorState);
     let downloadURL = [];
     let title = data.get("title");
-    files.map((image,i)=>{
+    files.forEach((image,i)=>{
       const imageRef = ref(storage, `noticias/${image.path}`);
       uploadBytes(imageRef, image, "data_Url").then(async()=>{
        let URL = await getDownloadURL(imageRef);
        downloadURL.push(URL);
-        if(i+1 === files.length){
+        if(downloadURL.length === files.length){
           addDoc(collection(db,"noticias"),{
             title,
             time: serverTimestamp(),
             text,
             imagesURL:downloadURL,
-            }).then(
-              PostInfo("success","La noticia fue publicada")
+            }).then(()=>{
+              PostInfo("success","La noticia fue publicada")}
             ).catch(
               err=>PostInfo("error",`${err}`)
             );
