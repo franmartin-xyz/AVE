@@ -36,6 +36,7 @@
     scale: 1.2;
     transition: scale 0.4s;
 }
+
 .nm__navbar-links {
     flex: 1;
     display: flex;
@@ -43,9 +44,18 @@
     align-items: center;
 }
 
+.nm__navbar-links a:focus,a:visited,a:active{
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
 .nm__navbar-links_container {
     display: flex;
     flex-direction: row;
+}
+.nm__navbar-links_container p{
+    outline: none;
+ -webkit-tap-highlight-color: transparent; 
 }
 
 .nm__navbar-links_container p,
@@ -80,9 +90,14 @@
     cursor: pointer;
     border-radius: 5px;
 }
+.nm__navbar-sign{
+    outline: none;
+ -webkit-tap-highlight-color: transparent; 
+}
 .nm__navbar-sign button:hover{
     scale: 1.06;
     transition: scale 0.4s;
+    user-select: none;
 }
 
 .nm__navbar-menu {

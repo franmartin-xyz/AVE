@@ -105,6 +105,34 @@ font-family: var(--font-family);
   font-weight:700;    
 }
 
+.paginationBtn{
+  width: 80%;
+  height: 50px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  outline: none;
+ -webkit-tap-highlight-color: transparent; 
+}
+.paginationActive a{
+  background-color: rgba(113, 16, 16, 0.77);
+}
+.paginationBtn a {
+  padding: 5px 12px;
+  font-size: 20px;
+  margin: 5px;
+  border-radius: 50%;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+  font-family: var(--font-family);
+}
+.paginationBtn li:hover{
+  transition: all 0.4s;
+  scale: 1.05;
+}
+
 @media screen and (max-width: 650px){
     .model{
         width: 80vw;

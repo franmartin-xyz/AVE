@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import "swiper/css"
+import "swiper/css/pagination";
+import "./home.css"
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../components/functions/firebase'
 import { TextReader, Spinner, PostInfo } from '../components';
-import "./home.css"
 import * as dayjs from "dayjs"
+import {Swiper,SwiperSlide} from 'swiper/react';
+import { Pagination } from "swiper";
 const Home = () => {
   const [news,setNews] = useState([]);
   const [loading,setLoading] = useState(false)
@@ -32,9 +36,20 @@ const Home = () => {
               <div key={i} className="news__cont">
                 <div className='news__img-cont'>
                   {
+                    data.imagesURL.length >1 ?(
+                    <Swiper 
+                      pagination={{dynamicBullets: true}}
+                      modules={[Pagination]}
+                      className="news__swiper"
+                    >{
                   data.imagesURL.map((url,i)=>{return(
-                    <img src={url} alt="imagen de noticia" key={i}/>
-                    )})
+                    <SwiperSlide key={i}>
+                      <img src={url} alt="imagen de noticia" />
+                    </SwiperSlide>
+                    )})}
+                    </Swiper>)
+                    :
+                    <img src={data.imagesURL[0]} alt="imagen de noticia" />
                   } 
                 </div>
                 <title className='news__title'>{data.title}</title>

@@ -1,6 +1,5 @@
 
 import React from "react";
-import { ReactDOM } from "react";
 import "./richreader.css"
 import 'draft-js/dist/Draft.css';
 import {Editor, EditorState, convertFromRaw, }  from "draft-js"
