@@ -8,6 +8,7 @@ const Galery = () => {
   const [pageNumber,setPageNumber]=useState(0);
   const modelRef = React.useRef();
   function search(e){
+    setPageNumber(0)
     const res = Array.filter((url) => {url = url.toLowerCase(); return url.includes(e.target.value.toLowerCase())})
     if(res.length>0 && e.target.value !== "") setArray(res); else {
       const LogosCollection = collection(db,"logos");
