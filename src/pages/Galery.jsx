@@ -1,8 +1,9 @@
 import "./galery.css"
 import { collection, getDocs } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { db } from '../components/functions/firebase';
 import ReactPaginate from "react-paginate"
+import * as Scroll from "react-scroll";
 const Galery = () => {
   const [Array,setArray] = useState([]);
   const [pageNumber,setPageNumber]=useState(0);
@@ -48,12 +49,13 @@ const Galery = () => {
   </div>
   )})
   const pageCount = Math.ceil(Array.length / itemsPerPage);
-
+  const wrapperRef = useRef(null);
   const changePage = ({selected})=>{
-setPageNumber(selected)
+    setPageNumber(selected);
+    setTimeout(()=>{ Scroll.animateScroll.scrollToTop()},500)
   }
   return (
-    <div className='cont'>
+    <div ref={wrapperRef} className='cont'>
       <div className="form__group field">
         <input type="input" autoComplete="off" onChange={(e)=>search(e)} className="form__field" placeholder="Buscar por Apellido" name="search" id='search' />
         <label unselectable="on" htmlFor="search" className="form__label" id="search__label">Buscar por Apellido</label>

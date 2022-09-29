@@ -13,3 +13,6 @@
   --color-text: #ffbfb0;
   --color-subtext: #FF8A71;
 }
+html{
+  scroll-behavior: smooth;
+}
