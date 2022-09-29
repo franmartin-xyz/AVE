@@ -49,13 +49,12 @@ const Galery = () => {
   </div>
   )})
   const pageCount = Math.ceil(Array.length / itemsPerPage);
-  const wrapperRef = useRef(null);
   const changePage = ({selected})=>{
     setPageNumber(selected);
     setTimeout(()=>{ Scroll.animateScroll.scrollToTop()},500)
   }
   return (
-    <div ref={wrapperRef} className='cont'>
+    <div className='cont'>
       <div className="form__group field">
         <input type="input" autoComplete="off" onChange={(e)=>search(e)} className="form__field" placeholder="Buscar por Apellido" name="search" id='search' />
         <label unselectable="on" htmlFor="search" className="form__label" id="search__label">Buscar por Apellido</label>
