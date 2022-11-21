@@ -8,6 +8,7 @@ import { TextReader, Spinner, PostInfo } from '../components';
 import * as dayjs from "dayjs"
 import {Swiper,SwiperSlide} from 'swiper/react';
 import { Pagination } from "swiper";
+import uuid from 'react-uuid';
 const Home = () => {
   const [news,setNews] = useState([]);
   const [loading,setLoading] = useState(false)
@@ -31,9 +32,9 @@ const Home = () => {
   return (
     <div className='news'>
       { news.length>0 ? (
-          news.map((data,i)=>{
+          news.map((data)=>{
             return(
-              <div key={i} className="news__cont">
+              <div key={uuid()} className="news__cont">
                 <div className='news__img-cont'>
                   {
                     data.imagesURL.length >1 ?(
@@ -42,8 +43,8 @@ const Home = () => {
                       modules={[Pagination]}
                       className="news__swiper"
                     >{
-                  data.imagesURL.map((url,i)=>{return(
-                    <SwiperSlide key={i}>
+                  data.imagesURL.map((url)=>{return(
+                    <SwiperSlide key={uuid()}>
                       <img src={url} alt="imagen de noticia" />
                     </SwiperSlide>
                     )})}
