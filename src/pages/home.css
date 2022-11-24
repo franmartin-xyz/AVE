@@ -11,7 +11,7 @@
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    width: 98vw;
+    max-width: 90vw;
     align-self: center;
     border-radius: 10px;
     box-shadow: 4px 4px 1px 1px grey;
@@ -28,7 +28,7 @@
     align-content: center;
 }
 .news__img-cont img{
-    width:100%;
+    max-width:100%;
     border-radius: 2px;
 }
 .swiper-slide{
