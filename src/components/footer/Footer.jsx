@@ -3,7 +3,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div></div>
+    <div className="footer">Made By DODEKA Devs | <a href="mailto:dodekadevs@gmail.com">Contact Us at dodekadevs@gmail.com</a> </div>
   )
 }
 

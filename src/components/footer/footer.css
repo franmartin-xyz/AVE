@@ -1,0 +1,9 @@
+.footer{
+    color: white;
+    font-family: var(--font-family);
+    margin-top: 10vh;
+    margin: 5px;
+}
+.footer a{
+    color: white;
+}
