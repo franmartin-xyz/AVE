@@ -59,9 +59,8 @@ function Detail() {
         <p>Pueblo de Origen: {details.PuebloOrigen}</p>
         <p>Tomo: {details.Tomos}</p>
         <br />
-        <p className='detail_texto'>Texto sin Traducir: {details.TextoSinTraducir}</p>
-        <br />
-        <p className='detail_texto'>Texto Traducido: {details.TextoTraducido}</p>
+        <p className='detail_texto'>Descripción Original:<p>{details.TextoSinTraducir}</p></p>
+        <iframe width="420" height="315" src="https://youtu.be/J6W49kUD3kY"></iframe>
     </div>
         </>
       ):(<><Spinner/></>)

@@ -36,6 +36,11 @@
     } 
 }
 @media screen and (min-width: 1200px){
+    .detail_texto{
+        text-align: center;
+        max-width: 1020px;
+        padding: 5px;
+    }
     .model-detail{
         width: 30vw;
         height: 78vh;
