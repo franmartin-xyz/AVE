@@ -60,7 +60,7 @@ function Detail() {
         <p>Tomo: {details.Tomos}</p>
         <br />
         <p className='detail_texto'>Descripción Original:<p>{details.TextoSinTraducir}</p></p>
-        <iframe width="420" height="315" src="https://youtu.be/J6W49kUD3kY"></iframe>
+        <iframe className='detail_video' src="https://youtu.be/LEll9LE10Rg"></iframe>
     </div>
         </>
       ):(<><Spinner/></>)
