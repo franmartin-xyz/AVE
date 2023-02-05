@@ -22,11 +22,6 @@
     max-width: 82vw;
 }
 
-.detail_video{
-    width:60vw;
-    height: 40vw;
-}
-
 @media screen and (max-width: 650px){
     .model-detail{
     width: 82vw;
@@ -42,11 +37,6 @@
     } 
 }
 @media screen and (min-width: 1200px){
-    /* .detail_texto{
-        text-align: center;
-        max-width: 1020px;
-        padding: 5px;
-    } */
     .model-detail{
         width: 30vw;
         height: 78vh;

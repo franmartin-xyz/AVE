@@ -4,6 +4,7 @@ import {db} from "../components/functions/firebase"
 import {doc, getDoc, getDocs,collection} from "firebase/firestore"
 import { useParams } from 'react-router-dom'
 import { Spinner } from '../components'
+import {EmbedVideoById} from "../Fuctions"
 function Detail() {
   const [details,setDetails] = useState()
   const [src,setSrc] = useState()
@@ -59,8 +60,8 @@ function Detail() {
         <p>Pueblo de Origen: {details.PuebloOrigen}</p>
         <p>Tomo: {details.Tomos}</p>
         <br />
-        <p className='detail_texto'>Descripción Original:<p>{details.TextoSinTraducir}</p></p>
-        <iframe className='detail_video' src="https://youtu.be/LEll9LE10Rg"></iframe>
+        <p className='detail_texto'>Descripción Original:</p><p className='detail_texto'>{details.TextoSinTraducir}</p>
+        <EmbedVideoById embedId="LEll9LE10Rg"></EmbedVideoById>
     </div>
         </>
       ):(<><Spinner/></>)
