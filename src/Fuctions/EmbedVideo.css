@@ -1,5 +1,17 @@
 .detail_video{
-    width:60vw;
-    height: 40vw;
+    width:95vw;
+    height: 45vw;
     border: 0px;
+}
+@media screen and (max-width: 650px){
+    .detail_video{
+        width:90vw;
+        height: 100vw;
+    } 
+}
+@media screen and (min-width: 650px) and (max-width: 1200px){
+    .detail_video{
+        width:95vw;
+        height: 100vw;
+    } 
 }

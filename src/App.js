@@ -4,7 +4,7 @@ import {Navbar,Footer,AuthProtection} from "./components"
 import { Home,Galery,News, Contact, Detail } from "./pages"
 function App() {
   return (
-    <div>
+    <div id='root_wrapper'>
     <BrowserRouter>
       <Navbar/>
         <Routes>

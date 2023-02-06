@@ -16,3 +16,6 @@
 html{
   scroll-behavior: smooth;
 }
+html, body {
+  min-height: 100vh;
+}
