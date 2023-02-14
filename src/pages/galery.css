@@ -6,7 +6,9 @@
     box-shadow: 0px -100px 40px -80px rgba(113, 16, 16, 0.77) inset; */
     transition: width 0.5s;
 }
-
+.model::part(default-progress-bar){
+  background-color: var(--color-primary);
+}
 .Main__cont{
     display: flex;
     flex-direction: column;

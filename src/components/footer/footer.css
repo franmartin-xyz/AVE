@@ -1,10 +1,10 @@
 .footer{
     color: white;
     font-family: var(--font-family);
-    margin:0 0 1.5vh 1vw;
+    margin:0 0 1.5vh 0vw;
     font-size: 12px;
     position: absolute; 
-    bottom: -5vh; 
+    bottom: -5vh;
     width: 100%
 }
 .footer a{

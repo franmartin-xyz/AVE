@@ -6,22 +6,34 @@ import ReactPaginate from "react-paginate"
 import * as Scroll from "react-scroll";
 import uuid from "react-uuid";
 import { Link } from "react-router-dom";
+import { isMobile } from 'react-device-detect';
 const Galery = () => {
-  const [Array,setArray] = useState([]);
+  const [DataEmblems,setDataEmblems] = useState([])
+  const [EmblemArray,setArray] = useState([]);
   const [pageNumber,setPageNumber]=useState(0);
+  const [loaded,setLoaded] = useState(false);
   const modelRef = React.useRef();
 
   
   useEffect(()=>{
-    const LogosCollection = collection(db,"logos");
+        const LogosCollection = collection(db,"logos");
     getDocs(LogosCollection).then(
-      document  => { setArray(document.docs[1].data().logos.urls); }
+      document  => {setDataEmblems(document.docs[1].data().logos.urls);}
     );
   },[])
+  useEffect(()=>{
+    setArray(DataEmblems);
+  },[DataEmblems])
+
+  useEffect(()=>{console.log(loaded)},[loaded])
+
   const itemsPerPage=5;
   const pagesVisited = pageNumber * itemsPerPage
+  useEffect(()=>{console.log("pageNumber",pageNumber)},[pageNumber])
+  const pageCount = Math.ceil(EmblemArray.length / itemsPerPage);
+  useEffect(()=>{console.log("pageCount",pageCount)},[pageCount])
 
-  const displayItems =  Array.slice(pagesVisited,pagesVisited+itemsPerPage).map((url)=>{
+  const displayItems =  EmblemArray.slice(pagesVisited,pagesVisited+itemsPerPage).map((url)=>{
     return( 
       <div className='escudo__cont'  key={uuid()}>
       <model-viewer
@@ -35,35 +47,42 @@ const Galery = () => {
       ar-modes="webxr"
       camera-orbit="90deg 90deg 4.7m"
       max-camera-orbit="auto auto 6m"
-      ref={(ref) => {
-        modelRef.current = ref;
-      }}
+      progress="1"
       >
     </model-viewer>
     <Link className='escudo__detailsBtn' to={`/AVE/galeria/${url.id}`}>ver más</Link>
   </div>
-  )})
-  const pageCount = Math.ceil(Array.length / itemsPerPage);
-  const changePage = ({selected})=>{
-    setPageNumber(selected);
-    setTimeout(()=>{ Scroll.animateScroll.scrollToTop()},100)
+  )
+})
+
+  const changePage = (obj)=>{
+    setPageNumber(obj.selected);
+    setTimeout(()=>{Scroll.animateScroll.scrollToTop()},100)
+  }
+
+  function filterArrayByUrl(array, input) {
+    return array.filter(function(obj) {
+      return obj.id.toLowerCase().includes(input.toLowerCase());
+    });
   }
 
   function search(e){
-    const res = Array.filter((url) => {url = url.toLowerCase(); return url.includes(e.target.value.toLowerCase())})
-    if(res.length>0 && e.target.value !== "") {setArray(res);} else {
-      const LogosCollection = collection(db,"logos");
-      getDocs(LogosCollection).then(
-      document  => { setArray(document.docs[0].data().urls);}
-      );
+    const res = filterArrayByUrl(EmblemArray,e.target.value.toLowerCase())
+    if(res.length>0 && e.target.value !== ""){
+      setArray(res)
+    } 
+    else{
+      setArray(DataEmblems);
     }
-    setPageNumber(0);
+    changePage({"selected":0})
  }
 
   return (
     <div className='cont'>
       <div className="form__group field">
-        <input type="input" autoComplete="off" onChange={(e)=>search(e)} className="form__field" placeholder="Buscar por Apellido" name="search" id='search' />
+        <input type="input" autoComplete="off" onChange={(e)=>search(e)} className="form__field" placeholder="Buscar por Apellido" name="search" id='search' ref={(ref) => {
+        modelRef.current = ref;
+      }}/>
         <label unselectable="on" htmlFor="search" className="form__label" id="search__label">Buscar por Apellido</label>
       </div>
       <div className="Main__cont">
