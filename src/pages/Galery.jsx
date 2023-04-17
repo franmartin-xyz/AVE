@@ -7,6 +7,7 @@ import * as Scroll from "react-scroll";
 import uuid from "react-uuid";
 import { Link } from "react-router-dom";
 import { isMobile } from 'react-device-detect';
+import {EmbedVideoById} from '../Fuctions'
 const Galery = () => {
   const [DataEmblems,setDataEmblems] = useState([])
   const [EmblemArray,setArray] = useState([]);
@@ -85,6 +86,7 @@ const Galery = () => {
       }}/>
         <label unselectable="on" htmlFor="search" className="form__label" id="search__label">Buscar por Apellido</label>
       </div>
+      <EmbedVideoById embedId='6RKmXf-zUhE'></EmbedVideoById>
       <div className="Main__cont">
         {displayItems}
        { displayItems.length > 0 && <ReactPaginate 
